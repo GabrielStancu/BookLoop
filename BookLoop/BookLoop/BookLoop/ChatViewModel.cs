@@ -11,7 +11,7 @@ namespace BookLoop
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string _name = "Gabi";
+        private string _name = "Gabiii";
         private string _message;
         private bool _isConnected;
         private ObservableCollection<UserMessage> _messages;
