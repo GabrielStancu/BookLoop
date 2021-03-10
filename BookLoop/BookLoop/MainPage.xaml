@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="BookLoop.MainPage">
+    <!--xmlns:local="clr-namespace:BookLoop" x:DataType="local:ChatViewModel"-->
+
+    <StackLayout BackgroundColor="DarkCyan">
+        <Label Text="Welcome to BookLoop!" HorizontalOptions="Center"/>
+        <ListView ItemsSource="{Binding Messages}" VerticalOptions="StartAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding User}" TextColor="White" VerticalTextAlignment="Center"/>
+                            <Label Text=":" TextColor="Black" VerticalTextAlignment="Center"/>
+                            <Label Text="{Binding Message}" TextColor="Black" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid VerticalOptions="End" Margin="5" Padding="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Entry Grid.Column="0" BackgroundColor="White" TextColor="Black" Text="{Binding Message}"/>
+            <Button Grid.Column="1" Command="{Binding SendMessageCommand}" Text="Send" BackgroundColor="Blue" TextColor="White"/>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>
