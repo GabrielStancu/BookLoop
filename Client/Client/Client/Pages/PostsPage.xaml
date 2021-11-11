@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.Pages.PostsPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome" xmlns:client="clr-namespace:Client.UserControls"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="main_background.png">
+    <ContentPage.Resources>
+        <Style x:Key="HeaderIconLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"/>
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+
+        <Style x:Key="FrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout x:Name="PostsLayout">
+                <Grid BackgroundColor="#43aa8b">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="FilterLabel"
+                           Grid.Column="0"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.Bars}"
+                           Style="{StaticResource HeaderIconLabelStyle}"/>
+
+                    <Label x:Name="MakeOfferLabel"
+                           Grid.Column="1"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.Plus}"
+                           Style="{StaticResource HeaderIconLabelStyle}"/>
+
+                    <Label Grid.Column="2"
+                           Text="Book Offers"
+                           Style="{StaticResource HeaderIconLabelStyle}"
+                           FontFamily="OpenSans-Regular"
+                           FontSize="26"/>
+
+                    <Label x:Name="ChatLabel"
+                           Grid.Column="3"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.Comment}"
+                           Style="{StaticResource HeaderIconLabelStyle}"/>
+
+                    <Label x:Name="SettingsLabel"
+                           Grid.Column="4"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.UserCog}"
+                           Style="{StaticResource HeaderIconLabelStyle}"/>
+                </Grid>
+
+
+                <Label Text="{Binding PaginationInfo}" FontSize="20" TextColor="White"
+                           VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+
+                <Grid HorizontalOptions="Center" Margin="20, 0, 20, 10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label x:Name="LeftPageNavigation"
+                           Grid.Column="0"
+                           HorizontalOptions="Center"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.ArrowCircleLeft}"
+                           Style="{StaticResource HeaderIconLabelStyle}" FontSize="30"
+                           VerticalTextAlignment="Center" HorizontalTextAlignment="End"
+                           TextColor="White"
+                           IsVisible="{Binding LeftNavigationEnabled}"/>
+
+                    <Label Grid.Column="1"
+                           HorizontalOptions="Center"
+                           Text="{Binding CurrentPage}"
+                           Style="{StaticResource HeaderIconLabelStyle}" FontSize="30"
+                           VerticalTextAlignment="End" HorizontalTextAlignment="Center"
+                           TextColor="White"/>
+
+                    <Label x:Name="RightPageNavigation"
+                           Grid.Column="2"
+                           HorizontalOptions="Center"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.ArrowCircleRight}"
+                           Style="{StaticResource HeaderIconLabelStyle}" FontSize="30"
+                           VerticalTextAlignment="Start" HorizontalTextAlignment="Start"
+                           TextColor="White"
+                           IsVisible="{Binding RightNavigationEnabled}"/>
+                </Grid>
+
+                <ListView ItemsSource="{Binding BookPosts}" HasUnevenRows="True" ItemSelected="OnSelectedPost" SelectedItem="{Binding SelectedBookPost}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <client:BookPostControl/>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

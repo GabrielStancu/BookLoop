@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:usercontrols="clr-namespace:Client.UserControls"
+             x:Class="Client.Pages.ConversationPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <Style x:Key="EntryFrameStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+            <Setter Property="CornerRadius" Value="2"/>
+            <Setter Property="Padding" Value="2"/>
+            <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="9*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Text="{Binding ConversationName}" BackgroundColor="#43aa8b" FontSize="26" HorizontalOptions="Fill" 
+                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White" HeightRequest="50"/>
+
+            <ScrollView Grid.Row="1" VerticalOptions="FillAndExpand" x:Name="MessagesScrollView">
+                <ListView x:Name="MessagesListView" ItemsSource="{Binding Messages}" HasUnevenRows="True" SeparatorVisibility="None" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame Padding="5" Margin="0,2,0,2" BackgroundColor="Transparent">
+                                    <usercontrols:UserMessage/>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    </ListView>
+            </ScrollView>
+
+            <Grid Grid.Row="2" Margin="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame Grid.Column="0" Style="{StaticResource EntryFrameStyle}" CornerRadius="25" BackgroundColor="LightGray" Margin="1,3" Padding="8,-10, 8, -10">
+                    <Entry Placeholder="message..." BackgroundColor="LightGray" Text="{Binding Message}"/>
+                </Frame>
+
+                <Button Text="Send" TextColor="White" Grid.Column="1" CornerRadius="25" Margin="1,3" BackgroundColor="#43aa8b"
+                        Clicked="OnSendMessageClicked"/>
+            </Grid>
+            
+        </Grid>
+        
+        
+    </ContentPage.Content>
+</ContentPage>

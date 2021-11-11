@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:client="clr-namespace:Client.UserControls"
+            xmlns:fontawesome="clr-namespace:FontAwesome"
+            x:Class="Client.Pages.SettingsPage"
+            NavigationPage.HasNavigationBar="False"
+            BarBackgroundColor="#43aa8b">
+    <ContentPage Title="User Data" 
+                 BackgroundImageSource="main_background.jpg">
+        <ContentPage.Resources>
+            <Style x:Key="InfoLabelStyle" TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}" />
+            </Style>
+            <Style x:Key="EntryStackLayoutStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Margin" Value="0,5"/>
+            </Style>
+            <Style x:Key="DetailsLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="BackgroundColor" Value="#43aa8b"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+            <Style x:Key="UserDataEntryStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="PlaceholderColor" Value="#5c6b73"/>
+            </Style>
+        </ContentPage.Resources>
+
+        <ScrollView>
+            <StackLayout>
+                <Image Source="{Binding ProfilePhoto}" HorizontalOptions="Center" HeightRequest="300" WidthRequest="300" Margin="0, 15, 0, 0"/>
+
+                <Button Text="Change profile picture" 
+                                Clicked="OnProfileChangeClicked" 
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="45, 5"/>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.User}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Label Text="{Binding BookUser.Username}" Style="{StaticResource DetailsLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.IdCard}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Label Text="{Binding BookUser.FirstName}" Style="{StaticResource DetailsLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.IdCard}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Label Text="{Binding BookUser.LastName}" Style="{StaticResource DetailsLabelStyle}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Envelope}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding BookUser.Email}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="email address"
+                           WidthRequest="300"
+                           FontSize="22"
+                           HorizontalTextAlignment="Center"/>
+                </StackLayout>
+
+                <Button Text="Save changes" 
+                                Clicked="OnSaveChangesClicked" 
+                                Style="{StaticResource ButtonStyle}"
+                                Margin="75, 5"/>
+
+                <Button Text="Logout" 
+                        Clicked="OnLogoutClicked" 
+                        Style="{StaticResource ButtonStyle}"
+                        Margin="75, 5"
+                        BackgroundColor="White"
+                        TextColor="#43aa8b"/>
+            </StackLayout>
+        </ScrollView>
+
+    </ContentPage>
+    <ContentPage Title="Posts"
+                 BackgroundImageSource="main_background.jpg">
+        <ScrollView>
+            <ListView ItemsSource="{Binding BookPosts}" HasUnevenRows="True" ItemSelected="OnPostTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <client:BookPostControl/>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </ContentPage>
+
+</TabbedPage>

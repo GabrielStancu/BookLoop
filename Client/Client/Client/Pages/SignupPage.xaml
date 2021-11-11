@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             x:Class="Client.Pages.SignupPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="main_background.png">
+    <ContentPage.Resources>
+        <Style x:Key="InfoLabelStyle" TargetType="Label">
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}" />
+        </Style>
+        <Style x:Key="EntryStackLayoutStyle" TargetType="StackLayout">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+        <Style x:Key="UserDataEntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="PlaceholderColor" Value="#5c6b73"/>
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="CornerRadius" Value="25"/>
+            <Setter Property="BackgroundColor" Value="#43aa8b"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.IdCard}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding FirstName}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="  first name  "/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.IdCard}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding LastName}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="  last name  "/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.User}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding Username}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="  username  "/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Lock}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry x:Name="PasswordEntry"
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="  password  "
+                           IsPassword="True"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Lock}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry x:Name="RePasswordEntry"
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="  password  "
+                           IsPassword="True"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Envelope}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding Email}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="email address"/>
+                </StackLayout>
+
+                <Button Style="{StaticResource ButtonStyle}" Text="Pick Profile Photo" Clicked="OnProfilePhotoClicked" Margin="25,5"/>
+                <Image Source="{Binding ProfilePhoto}" HorizontalOptions="Center" HeightRequest="125" WidthRequest="125"/>
+
+                <Button Style="{StaticResource ButtonStyle}" Text="Sign Up" Clicked="OnSignUpClicked" Margin="25,10"
+                        BackgroundColor="White" TextColor="#43aa8b"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

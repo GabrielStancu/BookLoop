@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             x:Class="Client.Pages.LoginPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="main_background.png">
+    <ScrollView>
+        <StackLayout VerticalOptions="Fill">
+            <Image Source="icon.png" HorizontalOptions="Center" HeightRequest="150" WidthRequest="150" Margin="15, 25, 15, 0"/>
+            <Label Text="BookLoop" HorizontalOptions="Center" FontSize="40" FontAttributes="Bold" TextColor="White"/>
+
+            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0, -8">
+                <Label Text="{x:Static fontawesome:FontAwesomeIcons.User}"
+                                FontFamily="{StaticResource FontAwesomeSolid}"
+                                TextColor="White"
+                                VerticalTextAlignment="Center"/>
+
+                <Entry Placeholder="  username  " FontSize="24" Text="{Binding Username}" TextColor="White" PlaceholderColor="#5c6b73"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Margin="0, -8">
+                <Label Text="{x:Static fontawesome:FontAwesomeIcons.Lock}"
+                                   FontFamily="{StaticResource FontAwesomeSolid}"
+                                   TextColor="White"
+                                   VerticalTextAlignment="Center"/>
+
+                <Entry x:Name="PasswordEntry" IsPassword="True" Placeholder="  password  " FontSize="24" TextColor="White" PlaceholderColor="#5c6b73"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, 10">
+                <Label Text="Remember user?" TextColor="White" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                <CheckBox VerticalOptions="Center"
+                                  Color="#43aa8b" IsChecked="{Binding RememberUser}"
+                                  CheckedChanged="OnRememberChecked"/>
+            </StackLayout>
+
+            <Button Text="Login" Margin="80, 10" 
+                    Clicked="OnLoginButtonClick" CornerRadius="25" BackgroundColor="#43aa8b"
+                    TextColor="White"/>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0, -8">
+                <Label Text="Don't have an account?" TextColor="White" VerticalOptions="Center" VerticalTextAlignment="Center"/>
+                <Button Text="Sign Up!" TextColor="White" VerticalOptions="Center" BackgroundColor="Transparent"
+                       Clicked="OnSignUpClicked" FontAttributes="Bold"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

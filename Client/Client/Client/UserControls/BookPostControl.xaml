@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.UserControls.BookPostControl"
+             xmlns:fontawesome="clr-namespace:FontAwesome">
+    <ContentView.Resources>
+        <Style x:Key="IconLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"/>
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="#202020"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="TextLabelStyle" TargetType="Label">
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="#202020"/>
+            <Setter Property="HorizontalTextAlignment" Value="Start"/>
+        </Style>
+    </ContentView.Resources>
+  <ContentView.Content>
+        <Frame Padding="0" Margin="5" CornerRadius="15" x:Name="BookPostItem">
+            <Grid Margin="5,5,5,0" BackgroundColor="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="2.5*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                    <ColumnDefinition Width="1.25*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <BoxView Grid.Row="0" 
+                         Grid.Column="0"
+                         Grid.ColumnSpan="4"
+                         BackgroundColor="#43aa8b"
+                         Margin="-5, -5, -5, 0"/>
+
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="{x:Static fontawesome:FontAwesomeIcons.Book}"
+                       Style="{StaticResource IconLabelStyle}"
+                       TextColor="White"/>
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Text="{Binding Title}"
+                       Style="{StaticResource TextLabelStyle}"
+                       TextColor="White"/>
+
+                <Label Grid.Row="0"
+                       Grid.Column="2"
+                       Text="{x:Static fontawesome:FontAwesomeIcons.User}"
+                       Style="{StaticResource IconLabelStyle}"
+                       TextColor="White"/>
+                <Label Grid.Row="0"
+                       Grid.Column="3"
+                       Text="{Binding PostOwner.Username}"
+                       Style="{StaticResource TextLabelStyle}"
+                       TextColor="White"/>
+
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="{x:Static fontawesome:FontAwesomeIcons.UserTie}"
+                       Style="{StaticResource IconLabelStyle}"/>
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding Author}"
+                       Style="{StaticResource TextLabelStyle}"/>
+
+                <Label Grid.Row="2"
+                       Grid.Column="0"
+                       Text="{x:Static fontawesome:FontAwesomeIcons.TheaterMasks}"
+                       Style="{StaticResource IconLabelStyle}"/>
+                <Label Grid.Row="2"
+                       Grid.Column="1"
+                       Text="{Binding Genre}"
+                       Style="{StaticResource TextLabelStyle}"/>
+
+                <Label Grid.Row="3"
+                       Grid.Column="0"
+                       Text="{x:Static fontawesome:FontAwesomeIcons.PenFancy}"
+                       Style="{StaticResource IconLabelStyle}"/>
+                <Label Grid.Row="3"
+                       Grid.Column="1"
+                       Text="{Binding Description}"
+                       Style="{StaticResource TextLabelStyle}"
+                       />
+
+                <Label Grid.Row="4"
+                       Grid.Column="0"
+                       Text="{x:Static fontawesome:FontAwesomeIcons.MapMarkerAlt}"
+                       Style="{StaticResource IconLabelStyle}"/>
+                <Label Grid.Row="4"
+                       Grid.Column="1"
+                       Text="{Binding Location}"
+                       Style="{StaticResource TextLabelStyle}"/>
+
+                <Label Grid.Row="4"
+                       Grid.Column="2"
+                       Text="{x:Static fontawesome:FontAwesomeIcons.Tag}"
+                       Style="{StaticResource IconLabelStyle}"/>
+                <Label Grid.Row="4"
+                       Grid.Column="3"
+                       Text="{Binding PriceTag}"
+                       TextColor="#43aa8b"
+                       FontSize="18"
+                       Style="{StaticResource TextLabelStyle}"
+                       FontAttributes="Bold"/>
+
+                <Image Grid.Row="1"
+                       Grid.Column="2"
+                       Grid.RowSpan="3"
+                       Grid.ColumnSpan="2"
+                       Source="{Binding PhotoFileName}"
+                       HeightRequest="100"
+                       WidthRequest="100"/>
+            </Grid>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

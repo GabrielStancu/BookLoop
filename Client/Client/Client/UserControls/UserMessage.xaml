@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Client.UserControls.UserMessage">
+  <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="6*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="{Binding Sender.PhotoFileName}" IsVisible="{Binding OtherUserMessage}" Grid.Column="0"
+                   HeightRequest="50" WidthRequest="50"/>
+
+            <Frame BackgroundColor="{Binding ColorMessage}" CornerRadius="25" Grid.Column="1" HorizontalOptions="{Binding MessageOrientation}">
+                <Label Text="{Binding MessageContent}" HorizontalTextAlignment="Start" VerticalOptions="Center" 
+                   BackgroundColor="{Binding ColorMessage}" TextColor="{Binding TextColorMessage}" FontSize="16" Margin="0, -10"/>
+            </Frame>
+            
+        </Grid>
+  </ContentView.Content>
+</ContentView>

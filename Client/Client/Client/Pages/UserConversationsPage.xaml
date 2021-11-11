@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:usercontrols="clr-namespace:Client.UserControls"
+             x:Class="Client.Pages.UserConversationsPage"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="White">
+    <ContentPage.Resources>
+        <Style x:Key="HeaderIconLabelStyle" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}"/>
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="FontSize" Value="30" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ContentView BackgroundColor="#202020" IsVisible="{Binding VisibleNewConversation}" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                    <StackLayout Orientation="Horizontal" HeightRequest="50" HorizontalOptions="FillAndExpand" BackgroundColor="Transparent">
+                        <Entry FontSize="20" VerticalOptions="CenterAndExpand" Placeholder="username" PlaceholderColor="#5c6b73" 
+                               TextColor="White" WidthRequest="150" HorizontalTextAlignment="Center" Text="{Binding Username}"/>
+                        <Button Text="OK" TextColor="White" FontSize="16"  BackgroundColor="#43aa8b" Clicked="OnOkClicked"
+                                CornerRadius="25" Margin="5" VerticalOptions="Center"/>
+                    </StackLayout>
+                </StackLayout>
+            </ContentView>
+            
+            <Grid BackgroundColor="#43aa8b" HeightRequest="50">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="2" Text="Chats" FontSize="26" HorizontalOptions="Fill" 
+                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center" TextColor="White"/>
+
+                <Label x:Name="NewGroupChat"
+                           Grid.Column="4"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.UserFriends}"
+                           Style="{StaticResource HeaderIconLabelStyle}"/>
+                <Label x:Name="NewPrivateChat"
+                           Grid.Column="0"
+                           Text="{x:Static fontawesome:FontAwesomeIcons.User}"
+                           Style="{StaticResource HeaderIconLabelStyle}"/>
+            </Grid>
+            <ScrollView>
+                <ListView ItemsSource="{Binding UserConversations}" HasUnevenRows="True" SeparatorVisibility="None" ItemSelected="OnConversationTapped"
+                          SelectedItem="{Binding SelectedConversation}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <usercontrols:UserConversation/>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fontawesome="clr-namespace:FontAwesome"
+             x:Class="Client.Pages.FilteringPage"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundImageSource="main_background.jpg">
+    <ContentPage.Resources>
+        <Style x:Key="InfoLabelStyle" TargetType="Label">
+            <Setter Property="VerticalTextAlignment" Value="Center"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolid}" />
+        </Style>
+        <Style x:Key="EntryStackLayoutStyle" TargetType="StackLayout">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+            <Setter Property="Margin" Value="0,5"/>
+        </Style>
+        <Style x:Key="UserDataEntryStyle" TargetType="Entry">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="PlaceholderColor" Value="#5c6b73"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center" />
+            <Setter Property="VerticalTextAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="CornerRadius" Value="25"/>
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="TextColor" Value="#43aa8b"/>
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Book}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding Title}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="     title     "/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.UserTie}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding Author}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="     author     "/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.TheaterMasks}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding Genre}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="     genre     "/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Handshake}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Picker SelectedItem="{Binding OfferType}" ItemsSource="{Binding OfferTypes}" 
+                            Title=" offer type " FontSize="24"
+                            TitleColor="#5c6b73" TextColor="White" BackgroundColor="Transparent"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Tag}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding MinimumPrice}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="min. price"
+                           IsEnabled="{Binding EnabledPrice}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Tag}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding MaximumPrice}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="max. price"
+                           IsEnabled="{Binding EnabledPrice}"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.MapMarkerAlt}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Entry Text="{Binding Location}" 
+                           Style="{StaticResource UserDataEntryStyle}"
+                           Placeholder="   location   "/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Sort}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Picker SelectedItem="{Binding TitleSorting}" ItemsSource="{Binding TitleSortings}" 
+                            Title="sort by title" FontSize="24"
+                            TitleColor="#5c6b73" TextColor="White" BackgroundColor="Transparent"/>
+                </StackLayout>
+
+                <StackLayout Style="{StaticResource EntryStackLayoutStyle}">
+                    <Label Text="{x:Static fontawesome:FontAwesomeIcons.Sort}"
+                           Style="{StaticResource InfoLabelStyle}"/>
+                    <Picker SelectedItem="{Binding PriceSorting}" ItemsSource="{Binding PriceSortings}" 
+                            Title="sort by price" FontSize="24"
+                            TitleColor="#5c6b73" TextColor="White" BackgroundColor="Transparent"/>
+                </StackLayout>
+
+                <Button Style="{StaticResource ButtonStyle}" Text="Filter" Clicked="OnFilterClicked" Margin="25,10"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
